@@ -6,6 +6,10 @@ from datetime import datetime
 
 
 favorite_team = "LAK"
+def lightTheLamp():
+    # Right now, this just prints GOAL! but it needs to control the lights
+    print("GOALLLL!")
+
 def updateScore(boxscore):
     if boxscore['clock']['inIntermission'] == True:
         print("Intermission! {} Remaining!".format(boxscore['clock']['timeRemaining']))
@@ -26,7 +30,7 @@ def live_game(game_url, home_team):
                 updateScore(boxscore)
                 break
             if boxscore[home_team]['score'] > currentGoals:
-                print("GOALLLL!")
+                lightTheLamp()
                 currentGoals = boxscore[home_team]['score']
             elif boxscore[home_team]['score'] < currentGoals:
                 print("Goal Disallowed!!!")
@@ -75,44 +79,4 @@ if __name__ == "__main__":
     while 1:
         schedule.run_pending()
         time.sleep(1)
-
-
-# def living_room_start_callback():
-#     loop = asyncio.new_event_loop()
-#     asyncio.set_event_loop(loop)
-#     # loop.run_until_complete(living_room_game_start())
-#     loop.close()
-    
-# def bed_room_start_callback():
-#     loop = asyncio.new_event_loop()
-#     asyncio.set_event_loop(loop)
-#     # loop.run_until_complete(bed_room_game_start())
-#     loop.close()
-
-# async def living_room_game_start():
-#     try:
-#         await bulb_living_room.update()
-#         await bulb_living_room.set_hsv(180,100,50)
-#         await bulb_living_room.set_brightness(100)
-#         for i in range(5):
-#             await bulb_living_room.turn_off()
-#             time.sleep(0.5)
-#             await bulb_living_room.turn_on()
-#             time.sleep(1) 
-#         await bulb_living_room.set_color_temp(3000)
-#     except Exception:
-#         pass
-    
-# async def bed_room_game_start():
-#     try:
-#         await bulb_bed_room.update()
-#         await bulb_bed_room.set_hsv(180,100,50)
-#         await bulb_bed_room.set_brightness(100)
-#         for i in range(5):
-#             await bulb_bed_room.turn_off()
-#             time.sleep(0.5)
-#             await bulb_bed_room.turn_on()
-#             time.sleep(1) 
-#         await bulb_bed_room.set_color_temp(3000)
-#     except Exception:
-#         pass
+        
